@@ -16,4 +16,25 @@ class Customer :
 
 
 
-        
+class Order :
+    def __init__(self, order_id, customer, items) :
+        self.order_id = order_id
+        self.customer = customer
+        self.items = items
+    def total_price(self) :
+        total = 0
+        for item in self.items :
+            total += item[1]
+        return int(total * (1 - self.customer.get_discount_rate()))
+    def add_item(self, name, price) :
+        self.items.append((name, price))
+    def pay(self) :
+        total = self.total_price()
+        self.customer.add_points(total)
+        return total
+    def summary(self) :
+        print(f"주문번호: {self.order_id}")
+        print(f"총액: {self.total_price():,}원")
+        print(self.customer.summary())
+
+
