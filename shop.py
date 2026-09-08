@@ -4,7 +4,7 @@ class Customer :
         self.grade = grade
         self.points = points
     def add_points(self, amount) :
-        self.points += amount * 0.05
+        self.points += amount * 0.07
         self.points = int(self.points)
     def get_discount_rate(self) :
         if self.grade == "basic" :
