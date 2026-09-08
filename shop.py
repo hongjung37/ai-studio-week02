@@ -33,8 +33,34 @@ class Order :
         self.customer.add_points(total)
         return total
     def summary(self) :
+        print("-------------------------------")
         print(f"주문번호: {self.order_id}")
         print(f"총액: {self.total_price():,}원")
         print(self.customer.summary())
+
+
+# VIP 고객(포인트 0), BASIC 고객(포인트 1000) 생성
+customerA = Customer("하정윤", "vip")
+customerB = Customer("박건", "basic", 1000)
+
+# 주문 생성
+order1 = Order(1, customerA, [("양파", 10000), ("사과", 20000)])
+order2 = Order(2, customerB, [("수박", 30000), ("배", 40000)])
+order3 = Order(3, customerB, [("바나나", 50000)])
+
+# 10000+20000 = 30000  30000 * 0.95 = 28500원   포인트 적립 28500 * 0.05 = 1425점
+order1.pay()
+order1.summary()
+
+# 30000+40000 = 70000  70000 * 0.97 = 67900원   포인트 적립 67900 * 0.05 = 3395점
+order2.pay()
+order2.summary()
+
+# 50000 + 50000 = 100000  100000 * 0.97 = 97000원   포인트 적립 97000 * 0.05 = 4850점
+
+order3.add_item("딸기", 50000)
+order3.pay()
+order3.summary()
+
 
 
